@@ -16,7 +16,7 @@
 		<h2>Flow Block list</h2>
 		<ul>
 			{% for item in items %}
-				<li>{{ item }} </li>
+				<li>{{ item | safe}} </li> 
 			{% endfor %}
 		</ul>
 		{% endif %}
