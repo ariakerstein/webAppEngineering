@@ -1,3 +1,5 @@
+import os
+
 
 import webapp2
 
@@ -45,14 +47,33 @@ form="""
 </form>
 """
 
+class Handles(webapp2.RequestHandler):
+	def write(self, *a, **kw):
+		self.response.out.write(*a, **kw)
 
-class MainPage(webapp2.RequestHandler):
-    def get(self):
-        self.response.out.write(form)
+
+class MainPage(Handler):
+	def get(self):
+		self.write("Hello, Ari")
+
+# class MainPage(webapp2.RequestHandler):
+#     def write_form(error=""):
+#     	self.response.out.write(form % {"error": error})
+   
+
+    # def get(self):
+    #     self.response.out.write(form)
 
     def post(self):
-    	self.response.out.write("Great! that sounds like it'll be time well spent.")
-
+    	user_month = valid_month(self.request.get("month"))
+    	user_day = valid_day(self.request.get('day'))
+    	user_year = valid_year(self.request.get('year'))
+    	<div style="color: red">%(error)s</div>
+    	
+    if not (user_day and user_month and user_year):
+    	self.response.out.writes(form)
+    else:
+		self.response.out.write("Great! that sounds like it'll be time well spent.")
 
 # class TestHandler(webapp2.RequestHandler):
 # 	def post(self):
