@@ -1,15 +1,49 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <link type="text/css" rel="stylesheet" href="/static/main.css" />
 
-  <title>CS 253 Blog</title>
+<head>
+
+<!-- Latest compiled and minified CSS -->
+
+<!--   <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
+  <link type="text/css" rel="stylesheet" href="/static/css/styles.css" /> -->
+
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css"/>
+<script src="../js/jquery-1.11.0.min.js"> </script>
+<script src="..js/bootstrap.min.js"> </script>
+<script src="../js/jquery-1.11.0.min.js"> </script>
+<script src="../js/scripts.js"> </script>
+</head>
+
+  {% block navbar %}
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Distraqt
+      <a class="navbar-brand" href="#">Weekly Planner
+      <a class="navbar-brand" href="#">Blog
+<!--       <a class="navbar-brand" href="#">New Block -->
+<!--         <img alt="Brand" src="..."> -->
+      </a>
+    </div>
+  </div>
+</nav>
+  {% endblock %}
+
+
+  <title>The Distraqt Blog</title>
 </head>
 
 <body>
   <a href="/blog" class="main-title">
-    CS 253 Blog
+    Distraqt: the Blog
   </a>
+
+<br>
+<a href="/blog/newpost" class="newPost">
+<h2>New Post</h2></a>
+</div>
+<br>
 
   <div class="login-area">
     {% if user %}
@@ -21,10 +55,26 @@
     {% endif %}
   </div>
 
+<div class="container content">
+<div class="well well-sm">
+<!-- <div class="container content">
+<div class="jumbotron"> -->
   <div id="content">
   {% block content %}
   {% endblock %}
   </div>
+  </div>
+  </div>
+<!-- </div>
+</div> -->
+
+{% block footer %}
+      <footer>
+        <hr />
+        <p>Ari Akerstein, &copy; 2015</p>
+      </footer>
+{% endblock %}
+
 </body>
 
 </html>

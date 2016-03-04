@@ -125,6 +125,8 @@ class Post(db.Model):
     content = db.TextProperty(required = True)
     created = db.DateTimeProperty(auto_now_add = True)
     last_modified = db.DateTimeProperty(auto_now = True)
+    timer = db.IntegerProperty()
+    category = db.StringProperty()
 
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
@@ -132,8 +134,19 @@ class Post(db.Model):
 
 class BlogFront(BlogHandler):
     def get(self):
-        posts = greetings = Post.all().order('-created')
-        self.render('front.html', posts = posts)
+        if self.user:
+            posts = greetings = Post.all().order('-created')
+            self.render('front.html', posts = posts)
+        else:
+            self.redirect("/login")
+
+# class BlogFrontCategory(BlogHandler):
+#     def get(self):
+#         if self.user:
+#             posts = greetings = Post.all().order('-created')
+#             self.render('front_category.html', category = category)
+#         else:
+#             self.redirect("/login")
 
 class PostPage(BlogHandler):
     def get(self, post_id):
@@ -159,14 +172,15 @@ class NewPost(BlogHandler):
 
         subject = self.request.get('subject')
         content = self.request.get('content')
+        category = self.request.get('category')
 
         if subject and content:
-            p = Post(parent = blog_key(), subject = subject, content = content)
+            p = Post(parent = blog_key(), subject = subject, content = content, category=category)
             p.put()
             self.redirect('/blog/%s' % str(p.key().id()))
         else:
             error = "subject and content, please!"
-            self.render("newpost.html", subject=subject, content=content, error=error)
+            self.render("newpost.html", subject=subject, content=content, category=category, error=error)
 
 
 ###### Unit 2 HW's
@@ -278,6 +292,13 @@ class Unit3Welcome(BlogHandler):
         else:
             self.redirect('/signup')
 
+class Test(BlogHandler):
+    def get(self):
+        if self.user:
+            self.render('test.html', username = self.user.name)
+        else:
+            self.redirect('/signup')
+
 class Welcome(BlogHandler):
     def get(self):
         username = self.request.get('username')
@@ -291,11 +312,13 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                ('/unit2/signup', Unit2Signup),
                                ('/unit2/welcome', Welcome),
                                ('/blog/?', BlogFront),
+                               # ('/BlogCategory' ,BlogFrontCategory),
                                ('/blog/([0-9]+)', PostPage),
                                ('/blog/newpost', NewPost),
                                ('/signup', Register),
                                ('/login', Login),
                                ('/logout', Logout),
                                ('/unit3/welcome', Unit3Welcome),
+                               ('/blog/test', Test),
                                ],
                               debug=True)
