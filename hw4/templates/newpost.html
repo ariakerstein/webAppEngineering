@@ -19,11 +19,16 @@
       <a class="navbar-brand" href="/blog">Distraqt
       <a class="navbar-brand" href="#">Weekly Planner
       <a class="navbar-brand" href="#">Blog
-
-       <ul class="navbar-brand pull-right" id="login-area">
+</div>
+       <ul class="nav navbar-nav navbar-right">
+<!--       <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+    
     {% if user %}
       {{user.name}} <a class="login-link" href="/logout">logout</a>
     {% else %}
+<!--           <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
       <a class="login-link" href="/login">login</a>
       |
       <a class="login-link" href="/signup">signup</a>
@@ -35,25 +40,25 @@
 </nav>
   {% endblock %}
 
+
 {% block content %}
 
 
+{% block newPostBtn %}
+{% endblock %}
 
-
-
+<!-- {% block loginArea %}
+{% endblock %} -->
 <!--start timer test-->
 <h1 class="modal-title" id='msg' align='center' class='text-center'></h1>
-<!--         <h1> <span class="label label-default" id='msg' </span></h1>
-        <h1 class="modal-title" id='time' class='text-center'></h1>
-        <h1 class="modal-title" id='alert' class='text-center'></h1> -->
-<!--         <h2 id="result"></h2> -->
+
  
 <!-- <div class="modal-body"> -->
 <div id = "myAlert" class = "page-header">
-  <a href = "#" class = "close" data-dismiss = "alert">&times;</a>
+<!--   <a href = "#" class = "close" data-dismiss = "alert">&times;</a> -->
     <strong>Nice work - you're done!</strong>
 </div>
-</div>
+<!-- </div> -->
 
 
 <div class="container content">
@@ -109,7 +114,7 @@
 
       <div class="error">{{error}}</div>
 
-      <input class="btn btn-success" type="submit">
+      <input class="btn btn-success" id="saveEntry" type="submit">
     </form>
  </div>
 <!--END Jumbotron form-->
