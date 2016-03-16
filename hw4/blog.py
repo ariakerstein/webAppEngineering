@@ -2,9 +2,11 @@ import os
 import re
 import random
 import hashlib
+import google.appengine.api
 import hmac
 from string import letters
 
+from google.appengine.api import users
 import webapp2
 import jinja2
 
