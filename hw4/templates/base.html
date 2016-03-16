@@ -17,7 +17,7 @@
 
 <body>
 
-  {% block navbar %}
+{% block navbar %}
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -26,11 +26,18 @@
       <a class="navbar-brand" href="#">Weekly Planner
       <a class="navbar-brand" href="#">Blog
 
-<!--       <a class="navbar-brand" href="#">New Block -->
-<!--         <img alt="Brand" src="..."> -->
+       <ul class="navbar-brand pull-right" id="login-area">
+    {% if user %}
+      {{user.name}} <a class="login-link" href="/logout">logout</a>
+    {% else %}
+      <a class="login-link" href="/login">login</a>
+      |
+      <a class="login-link" href="/signup">signup</a>
+    {% endif %}
       </a>
-    </div>
+    </ul>
   </div>
+    </div>
 </nav>
   {% endblock %}
 
@@ -45,33 +52,39 @@
     {% endif %}
   </div>
 
+
   <title>The Distraqt Blog</title>
 </head>
 
-<body>
+<!-- <body>
   <a href="/blog" class="main-title">
     Distraqt: the Blog
-  </a>
+  </a> -->
 
 <br>
+<div class="btn">
 <a href="/blog/newpost" class="newPost">
-<h2>New Flow Block</h2></a>
+<h3>New Flow Block</h3></a>
 </div>
 <br>
+</br>
 
 
 <div class="container content">
-<!-- <div class="well well-sm"> -->
-<!-- <div class="container content">
-<div class="jumbotron"> -->
   <div id="content">
+
+
   {% block content %}
+
   {% endblock %}
   </div>
   </div>
 <!--   </div> -->
 <!-- </div>
 </div> -->
+
+
+
 
 {% block footer %}
       <footer>
