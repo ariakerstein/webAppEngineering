@@ -1,6 +1,7 @@
 import os
 import re
 import random
+import webapp2
 import hashlib
 import google.appengine.api
 import hmac
@@ -134,11 +135,22 @@ class Post(db.Model):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str("post.html", p = self)
 
+#experiment with category additions:
+# class FlowCategory(db.Model):
+#     catName = db.StringProperty(required = True)
+#     created = db.DateTimeProperty(auto_now_add = True)
+#     last_modified = db.DateTimeProperty(auto_now = True)
+
+#     def render(self):
+#         self._render_text = self.content.replace('\n', '<br>')
+#         return render_str("category.html",  = self)
+
+
 class BlogFront(BlogHandler):
     def get(self):
         if self.user:
             posts = greetings = Post.all().order('-created')
-            self.render('front.html', posts = posts)
+            self.render('front.html', posts = posts, )
         else:
             self.redirect("/login")
 

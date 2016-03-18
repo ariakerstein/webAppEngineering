@@ -1,5 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% block brand %}
+<div class="container content">
+<!-- <div class="jumbotron"> -->
+  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i> Deeper Work</p></i></h4></h1>
+  <br>
+<a
+        <button type="button" id="signinButton" class="btn btn-primary pull-right"
+        href="/blog/newpost">New Flow Block&nbsp;
+        <!-- <span class="glyphicon glyphicon-record" aria-hidden="true"> -->
+
+        </a></button>
+        <br><br>
+</div>
+<br>
+
+</div>
+</div><br></br>
+
+{% endblock %}
   {{post.render() | safe}}
 {% endblock %}

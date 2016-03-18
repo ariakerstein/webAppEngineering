@@ -14,14 +14,32 @@
 
 {% extends "base.html" %}
 
-
 {% block content %}
+{% block brand %}
+
+  <div class="jumbotron" id="JumbotronBrand"><h1>Distraqt<h4><p><i> Deeper Work</p></i></h4></h1>
+  <br>
+<a
+        <button type="button" id="signinButton" class="btn btn-primary pull-right"
+        href="/blog/newpost">New Flow Block&nbsp;
+
+        </span>
+        </a></button>
+        <br></br>
+</div>
+<br>
+
+</div>
+</div><br></br>
+
+{% endblock %} 
 
 {% block body %}
 
 {% endblock %}
 
 <!-- <div class="container content"> -->
+
   {% for p in posts %}
       <div class="well well-sm">
     {{ p.render() | safe }}
